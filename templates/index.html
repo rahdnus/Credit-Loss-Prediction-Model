@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+<body>
+    <h1>CREDIT RISK PREDICTION MODEL</h1>
+    <form action="{{ url_for('predict')}}" method="post">
+        <label >Prediction Model</label></br>
+        <fieldset>
+            <input type="radio" name="Model"         value="0"	checked/><label>Decision Tree</label>
+            <input type="radio" name="Model"         value="1"	/><label>Random Forest</label>
+        </fieldset>
+        <br>
+        <label>Age</lable> <input type="number" name="Age" placeholder="age" required="required" />
+        <label>Credit Amount</lable> <input type="number" name="Credit amount" placeholder="Amount" required="required" /> 
+        <label>Duration</lable> <input type="number" name="Duration" placeholder="Duration" required="required" />
+            <br></br> 
+        <label >Gender</label></br>
+        <fieldset>
+            <input type="radio" name="Sex_male"         value="1"	checked/><label>Male</label>
+            <input type="radio" name="Sex_male"         value="2"	/><label>Female</label>
+            <input type="radio" name="Sex_male"         value="2"	/><label>Other</label>
+        </fieldset>
+        <br>
+        <label >Job</label></br>
+        <fieldset>
+            <input type="radio" name="Job"           value="0"	checked/><label>1</label>
+            <input type="radio" name="Job"           value="1"	/><label>2</label>
+            <input type="radio" name="Job"           value="2"	/><label>3</label>
+            <input type="radio" name="Job"           value="3"	/><label>None</label>
+        </fieldset>
+        <br>
+        <label >Housing</label></br>
+        <fieldset>
+            <input type="radio" name="Housing"       value="0"	checked/><label>own</label>
+            <input type="radio" name="Housing"       value="1"	/><label>rent</label>
+            <input type="radio" name="Housing"       value="2"	/><label>None</label>
+        </fieldset>
+        <br>
+        <label >Saving</label></br>
+        <fieldset>
+            <input type="radio" name="Saving"  		value="0"	checked/><label>little</label>
+            <input type="radio" name="Saving"  		value="1"	/><label>moderate</label>
+            <input type="radio" name="Saving"	    value="2"  	/><label>quite rich</label>
+            <input type="radio" name="Saving"       value="3"	/><label>rich</label>
+        </fieldset>
+        <br>
+        <label >Checking</label></br>
+        <fieldset>
+            <input type="radio" name="Checking"		value="0"	checked/><label>little</label>
+            <input type="radio" name="Checking"     value="1"   /><label>moderate</label>
+            <input type="radio" name="Checking"  	value="2"   /><label>rich</label>
+        </fieldset>
+        <br>
+        <label >Purpose</label></br>
+        <fieldset>
+            <input type="radio" name="Purpose"      value="0"   checked/><label>car</label>
+            <input type="radio" name="Purpose"      value="1"   /><label>domestic</label>
+            <input type="radio" name="Purpose"      value="2"   /><label>education</label>
+            <input type="radio" name="Purpose"      value="3"   /><label>furniture/equipment</label>
+            <input type="radio" name="Purpose"      value="4"	/><label>radio/TV</label>
+            <input type="radio" name="Purpose"		value="5"   /><label>repairs</label>
+            <input type="radio" name="Purpose" 		value="6"	/><label>vacation/others</label>
+        </fieldset>
+        <br>
+        <button type="submit">Predict</button>
+    </form>
+    <br><br>
+    <p>Model Used:{{model}} </p>
+    <p>Input Features:{{features}}</p>                      
+    <p> Result: {{ prediction }} </p>
+</body>
+</html>
+
+
