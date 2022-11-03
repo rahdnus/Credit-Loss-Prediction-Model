@@ -1,83 +1,204 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Document</title>
 </head>
 
-<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+<style>
+    /* credit:Ghosty */
+    html {
+        background-color: #8EC5FC;
+        background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    }
+
+    body {
+        color: #000 !important;
+        margin: 8px;
+    }
+
+    .blck {
+        padding: 8px;
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(255, 255, 255, 0.605);
+        border-radius: 6px;
+        border: 1px solid rgba(209, 213, 219, 0.3);
+        margin-top: 16px;
+    }
+
+    .glass {
+        background-color: rgba(255, 255, 255, 0.605) !important;
+    }
+
+    .input {
+        margin-top: 8px;
+    }
+
+    .input::placeholder {
+        color: rgb(26, 26, 26);
+    }
+</style>
+
 
 <body>
-    <h1>CREDIT RISK PREDICTION MODEL</h1>
+    <!-- <div  style="display: flex;" > -->
+        <div class="blck"style="margin: auto;">
+    <span style="font-size: 1.8rem; font-weight: bold;">CREDIT RISK PREDICTION MODEL</span><br>
+        </div></div>
     <form action="{{ url_for('predict')}}" method="post">
-        <label >Prediction Model</label></br>
+        <div class="blck">
+            <label><b>Prediction Model</b></label></br>
+            <fieldset>
+                <div class="control" style="margin-top: 6px;">
+                    <label class="radio">
+                        <input type="radio" name="Model" value="0" checked /><label>Decision Tree</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="Model" value="1" /><label>Random Forest</label>
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="blck">
+            <label><b>Age</b></label>
+            <input type="number" name="Age" class="input glass" placeholder="age" required="required" />
+        </div>
+        <div class="blck">
+            <label><b>Credit Amount</b></label>
+            <input type="number" name="Credit amount" class="input glass" placeholder="Amount" required="required" />
+        </div>
+        <div class="blck">
+            <label><b>Duration</b></label>
+            <input type="number" name="Duration" class="input glass" placeholder="Duration" required="required" />
+        </div>
+        <div class="blck">
+            <label><b>Gender</b></label></br>
+            <fieldset style="margin-top: 6px;">
+                <div class="control">
+                    <label class="radio">
+                        <input type="radio" name="Sex_male" value="1" checked /><label>Male</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="Sex_male" value="2" /><label>Female</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="Sex_male" value="2" /><label>Other</label>
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="blck">
+            <label><b>Job</b></label><br>
+            <fieldset>
+                <div class="control">
+                    <label class="radio">
+                        <input type="radio" name="Job" value="0" checked /><label>1</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="Job" value="1" /><label>2</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="Job" value="2" /><label>3</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="Job" value="3" /><label>None</label>
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="blck">
+            <label><b>Housing</b></label></br>
+            <fieldset>
+                <div class="control">
+                    <label class="radio">
+                        <input type="radio" name="Housing" value="0" checked /><label>own</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="Housing" value="1" /><label>rent</label>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="Housing" value="2" /><label>None</label>
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="blck">
+        <label><b>Saving</b></label></br>
         <fieldset>
-            <input type="radio" name="Model"         value="0"	checked/><label>Decision Tree</label>
-            <input type="radio" name="Model"         value="1"	/><label>Random Forest</label>
+            <label class="radio">
+                <input type="radio" name="Saving" value="0" checked /><label>little</label>
+            </label>
+            <label class="radio">
+                <input type="radio" name="Saving" value="1" /><label>moderate</label>
+            </label>
+            <label class="radio">
+
+            <input type="radio" name="Saving" value="2" /><label>quite rich</label>
+            </label>
+            <label class="radio">
+            <input type="radio" name="Saving" value="3" /><label>rich</label>
+            </label>
         </fieldset>
-        <br>
-        <label>Age</lable> <input type="number" name="Age" placeholder="age" required="required" />
-        <label>Credit Amount</lable> <input type="number" name="Credit amount" placeholder="Amount" required="required" /> 
-        <label>Duration</lable> <input type="number" name="Duration" placeholder="Duration" required="required" />
-            <br></br> 
-        <label >Gender</label></br>
+        </div>
+        <div class="blck">
+        <label><b>Checking</b></label></br>
         <fieldset>
-            <input type="radio" name="Sex_male"         value="1"	checked/><label>Male</label>
-            <input type="radio" name="Sex_male"         value="2"	/><label>Female</label>
-            <input type="radio" name="Sex_male"         value="2"	/><label>Other</label>
+            <label class="radio">
+                <input type="radio" name="Checking" value="0" checked /><label>little</label>
+            </label>
+            <label class="radio">
+            <input type="radio" name="Checking" value="1" /><label>moderate</label>
+        </label>
+        <label class="radio">
+            <input type="radio" name="Checking" value="2" /><label>rich</label>
+        </label>
         </fieldset>
-        <br>
-        <label >Job</label></br>
+    </div>
+    <div class="blck">
+        <label><b>Purpose</b></label></br>
         <fieldset>
-            <input type="radio" name="Job"           value="0"	checked/><label>1</label>
-            <input type="radio" name="Job"           value="1"	/><label>2</label>
-            <input type="radio" name="Job"           value="2"	/><label>3</label>
-            <input type="radio" name="Job"           value="3"	/><label>None</label>
+        <label class="radio">
+            <input type="radio" name="Purpose" value="0" checked /><label>car</label>
+        <label class="radio">
+            <label class="radio">
+            <input type="radio" name="Purpose" value="1" /><label>domestic</label>
+        </label>
+            <label class="radio">
+            <input type="radio" name="Purpose" value="2" /><label>education</label>
+        </label>
+            <label class="radio">
+            <input type="radio" name="Purpose" value="3" /><label>furniture/equipment</label>
+        </label> 
+            <label class="radio">
+            <input type="radio" name="Purpose" value="4" /><label>radio/TV</label>
+        </label> 
+            <label class="radio">
+            <input type="radio" name="Purpose" value="5" /><label>repairs</label>
+        </label>
+            <label class="radio">
+            <input type="radio" name="Purpose" value="6" /><label>vacation/others</label>
+        </label>
         </fieldset>
-        <br>
-        <label >Housing</label></br>
-        <fieldset>
-            <input type="radio" name="Housing"       value="0"	checked/><label>own</label>
-            <input type="radio" name="Housing"       value="1"	/><label>rent</label>
-            <input type="radio" name="Housing"       value="2"	/><label>None</label>
-        </fieldset>
-        <br>
-        <label >Saving</label></br>
-        <fieldset>
-            <input type="radio" name="Saving"  		value="0"	checked/><label>little</label>
-            <input type="radio" name="Saving"  		value="1"	/><label>moderate</label>
-            <input type="radio" name="Saving"	    value="2"  	/><label>quite rich</label>
-            <input type="radio" name="Saving"       value="3"	/><label>rich</label>
-        </fieldset>
-        <br>
-        <label >Checking</label></br>
-        <fieldset>
-            <input type="radio" name="Checking"		value="0"	checked/><label>little</label>
-            <input type="radio" name="Checking"     value="1"   /><label>moderate</label>
-            <input type="radio" name="Checking"  	value="2"   /><label>rich</label>
-        </fieldset>
-        <br>
-        <label >Purpose</label></br>
-        <fieldset>
-            <input type="radio" name="Purpose"      value="0"   checked/><label>car</label>
-            <input type="radio" name="Purpose"      value="1"   /><label>domestic</label>
-            <input type="radio" name="Purpose"      value="2"   /><label>education</label>
-            <input type="radio" name="Purpose"      value="3"   /><label>furniture/equipment</label>
-            <input type="radio" name="Purpose"      value="4"	/><label>radio/TV</label>
-            <input type="radio" name="Purpose"		value="5"   /><label>repairs</label>
-            <input type="radio" name="Purpose" 		value="6"	/><label>vacation/others</label>
-        </fieldset>
-        <br>
-        <button type="submit">Predict</button>
+    </div>
+    <br>
+    <div style="display:flex;">
+        <button style="margin:auto; font-size: 1.3rem; font-weight: bold;" type="submit" class="button glass"><b>Predict</b></button>
+        <div class="blck"style="margin: auto;">
+            <p style="font-size: 1rem; font-weight: bold;  "><b>Model Used:{{model}} </b></p>
+            <p style="font-size: 1rem; font-weight: bold;  "><b>Input Features:{{features}}</b></p>
+            <p style="font-size: 1rem; font-weight: bold;  "> <b>Result: {{ prediction }}</b> </p>
+        </div>
+    </div>
+    <br>
     </form>
-    <br><br>
-    <p>Model Used:{{model}} </p>
-    <p>Input Features:{{features}}</p>                      
-    <p> Result: {{ prediction }} </p>
+    <br>
+
+    
 </body>
+
 </html>
-
-
